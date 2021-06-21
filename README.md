@@ -1,25 +1,43 @@
-# aws-certified-developer-associate-cheat-sheet
-# AWS DVA-C01 Cheatsheet
+# AWS DVA-C01 Cheat-sheet
 
-# AWS S3
+## AWS S3
 
 - **Enabling Replication** on S3 bucket **increases storage** very quickly/ **Exponentially**
 - **CloudFront Distributions** to reduce latency of websites to users
-- **Encryptions** : Question 36 Pactice test 1 neal davis
+- **Encryptions** :
+  - Amazon S3-Managed Keys **(SSE-S3)** : the data is encrypted by Amazon S3 using keys that are managed through S3
+  - Server-Side Encryption with Customer-Provided Keys **(SSE-C)** : you manage the encryption keys and Amazon S3 manages the encryption
+  - Server-Side Encryption with Customer Master Keys **(CMKs)** Stored in AWS Key Management Service **(SSE-KMS) :** auditing and permissions , control
 - Access S3 privately (rather than across the Internet) - Configure a hardware VPN to a VPC and configure an S3 endpoint
 
-# IAM ROLE
+## IAM ROLE
 
 - Using IAM Role for EC2, ASG is more secure than providing access via IAM user
 - Want EC2 instance to access other AWS services use IAM ROLE
 
-# Application Load Balancer
+## Application Load Balancer
 
 - Sticky sessions, ( session affinity ) maintain state information , helps to prevent re-authentication
+- Target type
+  - **Instance** : The targets are specified by instance ID.
+  - **IP** : The targets are IP addresses.
+  - **Lambda** : The target is a Lambda function.
 
-# CloudFormation
+## CloudFormation
 
-# SAM - Serverless Application Module
+- **Parameters**
+  - It&#39;s like variables declaration, helps to input custom values to your template
+- **Mappings**
+  - set values based on a region
+  - use the _ **Fn::FindInMap** _ intrinsic function to retrieve values in a map
+- **Resources**
+  - This is the **ONLY mandatory field**
+  - AWS resources that you want to include in the stack, Ex: EC2 instance or S3 bucket.
+- **Outputs**
+  - utput values that you can import into other stacks
+  - view on the AWS CloudFormation console.
+
+## SAM - Serverless Application Module
 
 - **Serverless** Application deployments,
 - **templatized** serverless application
@@ -33,24 +51,48 @@
   - **All-at-once –** All at once.
 - Has its own cli (different from aws cli)
 
-# Lambda
+## Lambda
 
 - To **increase performance keep connect or close statements outside of the handler** , Place the connection in the global space
 - HTTP **Status Code: 429** : _TooManyRequestsException_ ,
   - The request **throughput limit was exceeded**  **for Synchronous invocations**.
   - Asynchronous invocation  retry, then to DLQ (Dead letter Queue)
+- You **CANNOT**** configure an event-source mapping between and ALB and a Lambda function ,** instead use ALB target type as lambda
 - Configuration Elements – check what does each do ?
 
-## Step Functions
+### Step Functions
 
 - **Combine Lambda** , or **branching**** Lambda **or** parallel **processing or** Error handling**
 
-![](RackMultipart20210620-4-1ltsy9v_html_f95860abd88605c8.png) ![](RackMultipart20210620-4-1ltsy9v_html_b1beb7ee27eb3d43.png) ![](RackMultipart20210620-4-1ltsy9v_html_9dce2b0f9ec11d91.png) ![](RackMultipart20210620-4-1ltsy9v_html_62c40b64ebf6b104.png)
+![](RackMultipart20210621-4-1061jtj_html_f95860abd88605c8.png) ![](RackMultipart20210621-4-1061jtj_html_b1beb7ee27eb3d43.png) ![](RackMultipart20210621-4-1061jtj_html_9dce2b0f9ec11d91.png) ![](RackMultipart20210621-4-1061jtj_html_62c40b64ebf6b104.png)
 
 - **State machine** (workflow) and tasks
 
-# SQS
+### Lambda Limits
 
+| **Resource** | **Quota** |
+| --- | --- |
+| Function memory allocation | 128 MB to 10,240 MB, in 1-MB increments. |
+| Function timeout | 900 seconds (15 minutes) |
+| Function environment variables | 4 KB |
+| Function resource-based policy | 20 KB |
+| Function layers | 5 layers |
+| Function burst concurrency | 500 - 3000 (varies per Region) |
+| Deployment package (.zip file archive) size | 50 MB (zipped, for direct upload)
+ 250 MB (unzipped, including layers)
+ 3 MB (console editor) |
+| Container image code package size | 10 GB |
+
+- **Session data** and Lambda
+  - AWS Lambda is a stateless compute service and so you cannot store session data in AWS Lambda itself
+  - You can use **DynamoDB or AWS S3** with lambda to store some session data (user data)
+- **Concurrency** : is the number of requests that your function is serving at any given time
+  - **Concurrency = number of requests \* number of executions per sec.**
+  - Ex: if we have 20 requests and each requests takes 20 sec to execute then concurrency = 20\*20=400
+
+## SQS
+
+- AdjustReceiveMessage  parameter if consumer is not able to process incoming messages , ex: setReceiveMessage to 10 to retrieve 10 messages at a time
 - **Short Polling :**
   - Default SQS behavior , Get msg  send msg (returns immediately) ,
   - Responds even if no msgs in queue. Empty responses possibility is more
@@ -74,7 +116,7 @@
   - Special queue for messages that can&#39;t be processed (consumed) successfully
   - Helps in debugging your application or messaging system
 
-# ECS - Elastic Container Service
+## ECS - Elastic Container Service
 
 - **Task Placement strategies** : Algorithm for selecting instances for task placement or tasks for termination
   - _ **binpack** _
@@ -85,13 +127,15 @@
   - _ **spread** _
     - Place tasks **evenly based on the specified value** (instanceId)
   - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html)
+- Task definitions
+-
 
 - ECS Deployment types
   - Rolling update
   - Blue/Green deployment with CodeDeploy
   - External Deployment
 
-# AWS Elastic Beanstalk
+## AWS Elastic Beanstalk
 
 - Source bundle:
   - Consist of a **single ZIP file or WAR file** (you can include multiple WAR files inside your ZIP file)
@@ -111,13 +155,14 @@
   - **Immutable** :
     - Total deployment of new instances
     - **Higher cost** , because you bring up equal number of new instances
-    -
+  -
+  - [https://blog.shikisoft.com/which\_elastic\_beanstalk\_deployment\_should\_you\_use/](https://blog.shikisoft.com/which_elastic_beanstalk_deployment_should_you_use/)
   - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html#deployments-scenarios](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html#deployments-scenarios)
   - [https://jayendrapatil.com/aws-elastic-beanstalk-deployment-strategies/](https://jayendrapatil.com/aws-elastic-beanstalk-deployment-strategies/)
-  - ![](RackMultipart20210620-4-1ltsy9v_html_752a966f701e0548.png)
+  - ![](RackMultipart20210621-4-1061jtj_html_752a966f701e0548.png)
   -
 
-#  Amazon DynamoDB
+##  Amazon DynamoDB
 
 - [https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
 - **Partition key** : Unique identifier, A simple primary key,
@@ -140,51 +185,83 @@
   - For **Better performance** of (or **reduce impact** on) provisioned throughput, or reduce impact on
     - **Reduce page size**
     - **Isolate scan operations**
-  - **Faster scan** results, but will place more burden on the table&#39;s provisioned throughput
+  - **Faster scan** results, but will place more burden on the table&#39;s provisioned throughput ( to **reduce the burden**** apply rate limiting**)
     - **parallel Scan (better used in below scenarios)**
       - The table size is 20 GB or larger
       - The table&#39;s provisioned read throughput is not being fully used.
       - Sequential Scan operations are too slow.
 
-# Amazon Cognito
+## RDS
+
+- RDS is not a key/value store
+
+## ElastiCache
+
+- In-memory caching system , memcached and redis
+- When to choose what ?
+-
+
+| **Memcached** | **Redis** |
+| --- | --- |
+| **simplest model** possible | **Snapshots** , automatic failover and backup/restore |
+| **Multi-threaded** : Run large nodes with multiple cores or threads | **Replication** |
+| ability to scale in and out | **Geospatial support** |
+| adding and removing nodes as demand | Complex data structures: sorted sets and lists, Transactions |
+| cache objects | Pub/Sub |
+|   | Lua scripting |
+
+## Amazon Cognito
 
 - Must be **accessible from**  **mobile** , **desktops** , and **tablets** , and must remember user preferences across platforms
 - Supports **unauthenticated access** to users (Cognito Identity Pool)
 - provide the sign-up and sign-in functionality to end users with no AWS access
 
-# CodeCommit
+| **Cognito User Pool** | **Cognito Identity Pool (Federated Identities)** |
+| --- | --- |
+| **Authentication** | **Authorization** |
+| sign-up and sign-in webpages for your app | Generate temporary AWS credentials for unauthenticated users. |
+| Access and manage user data. | Give your users access to AWS resources , like S3 , dynamoDB |
+| Use a custom authentication flow |   |
+| Track user device, location, and IP address |   |
+| adapt to sign-in requests of different risk levels |   |
 
-# CodeBuild
+- [https://aws.amazon.com/premiumsupport/knowledge-center/cognito-user-pools-identity-pools/](https://aws.amazon.com/premiumsupport/knowledge-center/cognito-user-pools-identity-pools/)
 
-# CodePipeline
+## CodeCommit
 
-# CodeDeploy
+## CodeBuild
+
+## CodePipeline
+
+## CodeDeploy
 
 - Can deploy software packages using an archive that has been uploaded to an Amazon S3 bucket
 
-# AWS Secrets Manager
+## AWS Secrets Manager
 
 - **Store secrets/credentials** and **automatically rotate them**
 - Integration for Amazon RDS, Amazon Redshift, and Amazon DocumentDB
 
-# AWS SSM Parameter
+## AWS SSM Parameter
 
 - Can **store secrets** (SecureString) but **NO automatic rotation** , you have to rotate if needed.
 
-# AWS KMS keys
+## AWS KMS keys
 
 - Region Specific
 
-# CloudWatch
+## CloudWatch
 
+- **CloudWatch Events**
+  - Respond to **state changes** in your AWS resources ( useful for triggering lambda func)
 - Cloudwatch logs Vs Cloudwatch Events ? – use case example
 
-# CloudTrail
+## CloudTrail
 
 - **Auditing** , Used for logging , continuously monitor, and retain account activity related to actions across your AWS infrastructure , ex : **API activity related to creating, modifying or deleting AWS resources**
 - **event history of your AWS account activity** (console, or cli or SDK)
 
-# AWS X-Ray
+## AWS X-Ray
 
 - **Tracing application activity** for **performance** of applications and operational statistics
 - **Segments** : The **data** , like the hostname, alias , IP, start and end times, subsegments , status
@@ -198,7 +275,7 @@
 
 - [https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html)
 
-# Links
+## Links
 
 - [https://jayendrapatil.com/aws-certified-developer-associate-june-2018-exam-learning-path/](https://jayendrapatil.com/aws-certified-developer-associate-june-2018-exam-learning-path/)
 - Special Thanks to developers of [https://word2md.com](https://word2md.com/) for helping with easy conversation .docx to .md
