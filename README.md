@@ -1,6 +1,59 @@
-# AWS DVA-C01 Cheat Sheet
+# AWS Certified Developer Associate (DVA-C01) Cheat Sheet
 
-Following Cheat Sheet was prepared during June-2021
+1. Following Cheat Sheet was prepared during **June-2021**
+2. Not all the DVA-C01 certification services are covered in this cheat sheet, but only which are very important for exam
+3. Cheat Sheet was prepared based on
+  1. (Mainly) Udemy Practice tests by Jon Bonso , Neal Davis
+  2. AWS Documentation
+  3. AWS FAQ
+  4. AWS Whitepapers
+4. This Sheet to be used as last min reference ONLY or for quick reference ONLY
+5. This was my notes for last day quick glance before the actual DVA-C01 exam
+6. All credits to excellent course by Neal Davis and challenging practice test by Jon Bonso
+
+## Main Course links
+
+1. Neal Davis Course &amp; practice tests :
+  1. [https://www.udemy.com/course/aws-certified-developer-associate-exam-training/](https://www.udemy.com/course/aws-certified-developer-associate-exam-training/)
+  2. [https://www.udemy.com/course/aws-developer-associate-practice-exams/](https://www.udemy.com/course/aws-developer-associate-practice-exams/)
+2. Jon Bonso Practice tests:
+  1. [https://www.udemy.com/course/aws-certified-developer-associate-practice-exams-amazon/](https://www.udemy.com/course/aws-certified-developer-associate-practice-exams-amazon/)
+3. In Detail Cheat Sheets by Neal and Jon
+  1. [https://digitalcloud.training/certification-training/aws-developer-associate/](https://digitalcloud.training/certification-training/aws-developer-associate/)
+  2. [https://tutorialsdojo.com/aws-cheat-sheets/](https://tutorialsdojo.com/aws-cheat-sheets/)
+4. Other Prominent course for DVA-C01( Stephane Maarek, Ranga Karanam)
+  1. [https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/](https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/)
+  2. [https://www.udemy.com/course/aws-certified-developer-associate-practice-tests-dva-c01/](https://www.udemy.com/course/aws-certified-developer-associate-practice-tests-dva-c01/)
+  3. [https://www.udemy.com/course/aws-certified-developer-associate-step-by-step/](https://www.udemy.com/course/aws-certified-developer-associate-step-by-step/)
+  4. [https://www.udemy.com/course/new-exam-review-aws-certified-developer-associate/](https://www.udemy.com/course/new-exam-review-aws-certified-developer-associate/)
+
+## My Preparation for DVA-C01
+
+1. Time : 3-4Weeks (3-4hrs a day)
+2. Study Pattern :
+
+- Neal Davis course
+- 1 Neal Davis Practice Test
+- 4 Jon Bonso Tests
+- 2 Stephane Maarek Test
+- My Own Notes (This Cheat Sheet)
+
+## My Practice and Actual Exam Results
+
+| **Practice Test** | **Neal** | **Jon** | **Stephane** | **AWS Exam** |
+| --- | --- | --- | --- | --- |
+| **Practice Test 1** | 60% | 64% | 64% |   |
+| **Practice Test 2** |   | 70% | 67% |   |
+| **Practice Test 3** |   | 68% |   |   |
+| **Practice Test 4** |   | 72% |   |   |
+| **DVA-C01** |   |   |   | **89%** |
+
+## Want more tips? Let&#39;s get connected
+
+- Twitter: [https://twitter.com/venkatesh111](https://twitter.com/venkatesh111)
+- LinkedIn: [https://www.linkedin.com/in/venkatesh111/](https://www.linkedin.com/in/venkatesh111/)
+
+# DVA-C01 Cheat Sheet
 
 ## IAM
 
@@ -22,7 +75,7 @@ Following Cheat Sheet was prepared during June-2021
   - Grant least privilege
   - Use roles for applications that run on Amazon EC2 instances
   - Use roles to delegate permissions
-  - More details here : [https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+  - [https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
 ## Application Load Balancer
 
@@ -121,7 +174,7 @@ Following Cheat Sheet was prepared during June-2021
 
 - **--dry-run** : to test if you have required permissions or not
 - -- **output** : output format (json/yaml/text/table)
-- **--page-size** : avoid time out erros
+- **--page-size** : avoid time out errors
 - **--no-paginate** : display only first page
 - **--debug** : Debug mode (verbose)
 
@@ -247,7 +300,6 @@ Following Cheat Sheet was prepared during June-2021
   - Task placement strategies and constraints are **NOT supported for tasks using the Fargate launch type**.
   - **Fargate tasks are spread across Availability Zones**
   - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html)
-
 - **ECS Deployment types**
   - **Rolling update**
     - Amazon ECS service scheduler replaces the currently running tasks with new tasks
@@ -294,7 +346,7 @@ Following Cheat Sheet was prepared during June-2021
   - [https://blog.shikisoft.com/which\_elastic\_beanstalk\_deployment\_should\_you\_use/](https://blog.shikisoft.com/which_elastic_beanstalk_deployment_should_you_use/)
   - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html#deployments-scenarios](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html#deployments-scenarios)
 
-![](RackMultipart20210630-4-1yq9pwt_html_752a966f701e0548.png)
+![](RackMultipart20210630-4-ccnkca_html_752a966f701e0548.png)
 
 [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html)
 
@@ -414,7 +466,7 @@ Following Cheat Sheet was prepared during June-2021
 - Simple workflows
 - **Combine Lambda** , or **branching**** Lambda **or** parallel **processing or** Error handling**
 
-![](RackMultipart20210630-4-1yq9pwt_html_f95860abd88605c8.png) ![](RackMultipart20210630-4-1yq9pwt_html_b1beb7ee27eb3d43.png) ![](RackMultipart20210630-4-1yq9pwt_html_9dce2b0f9ec11d91.png) ![](RackMultipart20210630-4-1yq9pwt_html_62c40b64ebf6b104.png)
+![](RackMultipart20210630-4-ccnkca_html_f95860abd88605c8.png) ![](RackMultipart20210630-4-ccnkca_html_b1beb7ee27eb3d43.png) ![](RackMultipart20210630-4-ccnkca_html_9dce2b0f9ec11d91.png) ![](RackMultipart20210630-4-ccnkca_html_62c40b64ebf6b104.png)
 
 - **State machine** (workflow) and tasks
 
@@ -525,6 +577,7 @@ Following Cheat Sheet was prepared during June-2021
 - **VisibilityTimeout** Vs. **Delay Queues**
   - **VisibilityTimeout :** message is consumed once and then timeout is set for other consumers
   - **Delay Queues :** Message itself it delayed to be processed by any consumer for first time itself
+
 - **Dead Letter Queue:**
   - Special queue for messages that can&#39;t be processed (consumed) successfully
   - Helps in debugging your application or messaging system
@@ -670,6 +723,7 @@ Following Cheat Sheet was prepared during June-2021
     - _ **TOTAL** _: returns the **total number of WCU consumed**.
     - _ **INDEXES** _: returns the **total number of WCU consumed** , with **subtotals for the table** and any **secondary indexes that were affected by the operation**.
     - _NONE_: no write capacity details are returned. (This is the default.)
+
 - **Automic\_counters**
   - to keep track of the **number of visitors to a website**
   - count may not be always exact may be slight over counting or undercounting, hence cannot be used for banking application or similar where count needs to be accurate.
@@ -760,6 +814,7 @@ Following Cheat Sheet was prepared during June-2021
 - **CodeDeploy agent**** must be installed (EC2 and On-prem ONLY) first** to use CodeDeploy
 - CodeDeploy **agent is not required for Amazon ECS or AWS Lambda**
 - CodeDeploy agent communicates outbound using **HTTPS over port 443**
+
 - Deployment types
   - **In-place deployment** : on each instance in the deployment group
 
@@ -827,6 +882,10 @@ Following Cheat Sheet was prepared during June-2021
 - Integration with applications using **PKCS#11, Java JCE, or Microsoft CNG interfaces**.
 - High-performance in- **VPC cryptographic acceleration** (bulk crypto)
 
+## Amazon Guard​Duty
+
+- **Threat detection** , continuously monitors for **malicious activity and unauthorized** behavior and protect your AWS accounts and workloads
+
 ## CloudWatch
 
 - **Namespaces :**
@@ -855,24 +914,6 @@ Following Cheat Sheet was prepared during June-2021
 - **Multi Region Trail :** One trail for all AWS regions
 - **Single Region Trail:** only events from one region
 
-## AWS Config
-
-- **Auditing, Inventory of AWS**  **resources**
-- **Resource**  **history and change tracking** – how resource was configured,
-- **Governance**
-
-## AWS Shield
-
-- **Avoid DDoS Attacks**
-
-## AWS WAF
-
-- **Protect from SQL injection** , **Cross-site scripting**
-
-## Amazon Guard​Duty
-
-- **Threat detection** , continuously monitors for **malicious activity and unauthorized** behavior and protect your AWS accounts and workloads
-
 ## AWS X-Ray
 
 - **Tracing application activity** for **performance** of applications and operational statistics
@@ -895,3 +936,17 @@ Following Cheat Sheet was prepared during June-2021
   - **AWSXRayDaemonWriteAccess :** upload traces, and some read permissions to support the use of sampling rules
   - **AWSXrayFullAccess: Encryption key** settings and **sampling rules**
 - **DOES NOT** track ~~**memory, swap, and disk space**~~ use CloudWatch for such custom metrics
+
+## AWS Config
+
+- **Auditing, Inventory of AWS**  **resources**
+- **Resource**  **history and change tracking** – how resource was configured,
+- **Governance**
+
+## AWS Shield
+
+- **Avoid DDoS Attacks**
+
+## AWS WAF
+
+- **Protect from SQL injection** , **Cross-site scripting**
